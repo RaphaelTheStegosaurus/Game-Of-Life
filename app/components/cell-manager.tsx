@@ -26,7 +26,29 @@ function Cell_Grid_Manager({ cols, rows }: Props) {
       />
     );
   });
-  const CheckGrid = () => {};
+  const CheckGrid = () => {
+    /* 
+    18 que van del 0*17
+    6 col y  3 row 
+        0   1   2   3   4   5
+    0   
+    1               z
+    2       x
+    
+    x= (1,2) = 13 = 6+6+(1+1+0+0+0+0)-1
+    z=(3,1) = 09 = 6+(1+1+1+1+0+0)-1
+
+
+        0   1   2   3   4
+    0
+    1
+    2               x
+    3
+    4
+    x=(3,2) = 5+5+(1+1+1+1+0)-1 = 13
+    */
+   
+  };
   useEffect(() => {
     console.log(GridCellState);
     

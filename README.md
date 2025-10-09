@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Conway's Game of Life
+***
+A implementation of **Conway's Game of Life** built using **Next.js** and **React Hooks** to manage the game logic and state.
+***
+## Table of Contents
+- [Conway's Game of Life](#conways-game-of-life)
+  - [Table of Contents](#table-of-contents)
+  - [Installation](#installation)
+  - [Usage](#usage)
+    - [Customization](#customization)
+  - [Features](#features)
+  - [Future Enhancements](#future-enhancements)
+  - [Contribution](#contribution)
+  - [License](#license)
 
-## Getting Started
+---
+## Installation
+To install and run the project locally, follow these steps:
 
-First, run the development server:
+1.  **Clone the Repository:** Open your terminal and enter the following command:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+    ```bash
+    gh repo clone RaphaelTheStegosaurus/Game-Of-Life
+    ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2.  **Install Dependencies:** Navigate into the project directory and install the necessary packages:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+    ```bash
+    cd Game-Of-Life
+    npm install
+    # or yarn install
+    ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3.  **Run the Next Server:** Start the development server:
 
-## Learn More
+    ```bash
+    npm run dev
+    # or yarn dev
+    ```
+    The application will be accessible at `http://localhost:3000`.
 
-To learn more about Next.js, take a look at the following resources:
+---
+## Usage
+This project is built with **Next.js, React, and TypeScript** logic, using standard **CSS and HTML**. It does not rely on utility frameworks like Tailwind CSS.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Customization
+* **Future Enhancements:** I plan to add features to allow users to dynamically change the interface's color scheme.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
+## Features
+* **Technology Stack:** Developed using **Next.js, React Hooks, and TypeScript**.
+* **Core Logic:** Implements the rules of **John Conway's Game of Life**.
+* **Minimal Dependencies:** Uses a clean architecture without external component libraries or CSS frameworks.
 
-## Deploy on Vercel
+---
+## Future Enhancements
+The following features are planned:
+* Ability to dynamically change the interface's color scheme.
+* Saved patterns/presets.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
+## Contribution
+Contributions are welcome and appreciated! If you find a bug, have a suggestion for improvement, or want to add a new feature:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1.  Open an *issue* to report the problem or propose the idea.
+2.  Submit a *pull request* with your changes.
+
+Your collaboration helps me grow as a developer and improve the quality of this project.
+
+---
+## License
+This project is licensed under the **MIT** License. For more details, see the [LICENSE](LICENSE) file.
