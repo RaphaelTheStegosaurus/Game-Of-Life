@@ -1,11 +1,12 @@
-import Image from "next/image";
 import styles from "./page.module.css";
+import Cell_Grid_Manager from "./components/cell-manager";
 
 export default function Home() {
   return (
     <>
       <h1 className={`${styles.title}`}>Game of Life - John Conway</h1>
-      <main className={`${styles.board}`}></main>
+
+      <Cell_Grid_Manager cols={20} rows={10} />
       <section className={`${styles.panel}`}></section>
     </>
   );

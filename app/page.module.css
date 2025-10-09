@@ -2,10 +2,7 @@
   text-shadow: 1px 1px 5px rgb(199, 198, 198);
 }
 
-.board {
-  border: 1px solid cyan;
-  padding: 10px;
-}
+
 
 .panel {
   background: gray;
