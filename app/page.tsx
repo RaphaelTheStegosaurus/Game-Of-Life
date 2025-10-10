@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <>
       <h1 className={`${styles.title}`}>Game of Life - John Conway</h1>
-      <Cell_Grid_Manager cols={6} rows={3} />
+      <Cell_Grid_Manager cols={10} rows={5} />
       <section className={`${styles.panel}`}></section>
     </>
   );

@@ -79,6 +79,7 @@ function Cell_Grid_Manager({ cols, rows }: Props) {
       const rowPoiter = ToroidalGrid(row + value[1], rows);
       return [colPointer, rowPoiter];
     });
+    return listOfNeghbors;
   };
   const ToroidalGrid = (value: number, SizeAxis: number) => {
     if (value < 0) {
@@ -89,8 +90,18 @@ function Cell_Grid_Manager({ cols, rows }: Props) {
       return value;
     }
   };
+  const checkCellIsAlive = () => {
+    const myIndex = findIndexIntoTheGrid(4,2);
+    const listNeighbors = checkNeighborsCells(4,2);
+    const listIndexByNeighbors = listNeighbors.map((value) => {
+      return findIndexIntoTheGrid(value[0], value[1]);
+    });
+    console.log(`[4,2 = ${myIndex}`);
+    console.log(`Neighbors =`);
+    console.log(listIndexByNeighbors);
+  };
   useEffect(() => {
-    console.log(GridCellState);
+    checkCellIsAlive();
   }, [GridCellState]);
 
   return (
