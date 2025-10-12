@@ -8,11 +8,20 @@ import Cell from "./cell";
 import styles from "./cell.module.css";
 function Cell_Grid_Manager({ cols, rows }: Props) {
   const nElements = cols * rows;
-  const [GridCellState, setGridCellState] = useState<boolean[]>(
+  const [CurrentGenerationCell, setCurrentGenerationCell] = useState<boolean[]>(
+    new Array(nElements).fill(false)
+  );
+  const [NextGenerationCell, setNextGenerationCell] = useState<boolean[]>(
     new Array(nElements).fill(false)
   );
   const handleButtonStateChange = (id: number, newState: boolean) => {
-    setGridCellState((prevStates) => ({
+    setCurrentGenerationCell((prevStates) => ({
+      ...prevStates,
+      [id]: newState,
+    }));
+  };
+  const handleNextGenerationStateChange = (id: number, newState: boolean) => {
+    setNextGenerationCell((prevStates) => ({
       ...prevStates,
       [id]: newState,
     }));
@@ -20,6 +29,7 @@ function Cell_Grid_Manager({ cols, rows }: Props) {
   const cells = new Array(nElements).fill(null).map((_, index) => {
     return (
       <Cell
+        statusLife={CurrentGenerationCell[index]}
         onStatusChange={handleButtonStateChange}
         index={index}
         key={index}
@@ -90,19 +100,53 @@ function Cell_Grid_Manager({ cols, rows }: Props) {
       return value;
     }
   };
-  const checkCellIsAlive = () => {
-    const myIndex = findIndexIntoTheGrid(4,2);
-    const listNeighbors = checkNeighborsCells(4,2);
+  const checkIsWillAliveToNextGeneration = (_CountOfNeigbors: number) => {
+    if (_CountOfNeigbors >= 4) {
+      return false;
+    } else if (_CountOfNeigbors <= 1) {
+      return false;
+    } else {
+      return true;
+    }
+  };
+  const checkCellIsAlive = (col: number, row: number) => {
+    const myIndex = findIndexIntoTheGrid(col, row);
+    const listNeighbors = checkNeighborsCells(col, row);
     const listIndexByNeighbors = listNeighbors.map((value) => {
       return findIndexIntoTheGrid(value[0], value[1]);
     });
-    console.log(`[4,2 = ${myIndex}`);
+    const countOfCellsNeighborsIsAlive = listIndexByNeighbors.reduce(
+      (total, value) => {
+        return total + (CurrentGenerationCell[value] ? 1 : 0);
+      },
+      0
+    );
+    const isAliveForNextGeneration = checkIsWillAliveToNextGeneration(
+      countOfCellsNeighborsIsAlive
+    );
+    console.log(`[${col},${row}] = ${myIndex}`);
     console.log(`Neighbors =`);
     console.log(listIndexByNeighbors);
+    console.log(
+      `De esta celula viven ${countOfCellsNeighborsIsAlive} vecinas vivas`
+    );
+    if (!CurrentGenerationCell[myIndex]) {
+      if (countOfCellsNeighborsIsAlive == 3) {
+        handleNextGenerationStateChange(myIndex, true);
+        console.log("Esta revive");
+      }
+    } else {
+      console.log(`Entonces esta celula estara ${isAliveForNextGeneration}`);
+      handleNextGenerationStateChange(myIndex, isAliveForNextGeneration);
+    }
   };
+
   useEffect(() => {
-    checkCellIsAlive();
-  }, [GridCellState]);
+    checkCellIsAlive(2, 0);
+  }, [CurrentGenerationCell]);
+  useEffect(() => {
+    console.log(NextGenerationCell);
+  }, [NextGenerationCell]);
 
   return (
     <main
