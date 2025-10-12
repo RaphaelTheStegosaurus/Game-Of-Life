@@ -36,37 +36,7 @@ function Cell_Grid_Manager({ cols, rows }: Props) {
       />
     );
   });
-  const CheckGrid = () => {
-    /* 
-    18 que van del 0*17
-    6 col y  3 row 
-        0   1   2   3   4   5
-    0   
-    1               z
-    2       x
-    
-    x= (1,2) = 13 = 6+6+(1+1+0+0+0+0)-1
-    z=(3,1) = 09 = 6+(1+1+1+1+0+0)-1
 
-
-        0   1   2   3   4
-    0
-    1
-    2               x
-    3
-    4
-    x=(3,2) = 5+5+(1+1+1+1+0)-1 = 13
-    
-    00 01 02 03 04 05 
-    10 11 12 13 14 15
-    20 21 22 23 24 25
-    
-    [r-1,c-1]   [r-1,c+0]   [r-1,c+1] 
-    [r+0,c-1]   [r+0,c+0]   [r+0,c+1] 
-    [r+1,c-1]   [r+1,c+0]   [r+1,c+1] 
-
-    */
-  };
   const findIndexIntoTheGrid = (col: number, row: number) => {
     // const COUNT_OF_COLUMNS = col - (col == 0 ? 0 : 1);
     // const newIndex: number = cols * row + COUNT_OF_COLUMNS;
@@ -143,8 +113,66 @@ function Cell_Grid_Manager({ cols, rows }: Props) {
     }
   };
 
+  //[c]WORKING AREA
+
+  const applyConwayRules = (
+    isCurrentlyAlive: boolean,
+    countOfCellsNeighborsIsAlive: number
+  ) => {
+    if (isCurrentlyAlive) {
+      return (
+        countOfCellsNeighborsIsAlive === 2 || countOfCellsNeighborsIsAlive === 3
+      );
+    } else {
+      return countOfCellsNeighborsIsAlive === 3;
+    }
+  };
+  const CheckGrid = () => {
+    const nextGenArray = [...CurrentGenerationCell];
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        const myIndex = findIndexIntoTheGrid(c, r);
+        const listNeighbors = checkNeighborsCells(c, r);
+        const countOfCellsNeighborsIsAlive = listNeighbors.reduce(
+          (total, [colNeighbor, rowNeighbor]) => {
+            const neighborIndex = rowNeighbor * cols + colNeighbor;
+            return total + (CurrentGenerationCell[neighborIndex] ? 1 : 0);
+          },
+          0
+        );
+        const isCurrentlyAlive = CurrentGenerationCell[myIndex];
+        const willBeAlive = applyConwayRules(
+          isCurrentlyAlive,
+          countOfCellsNeighborsIsAlive
+        );
+        nextGenArray[myIndex] = willBeAlive;
+      }
+    }
+    setCurrentGenerationCell(nextGenArray);
+    setNextGenerationCell(new Array(nElements).fill(false));
+  };
+
+  //Pasar al padre
+  // const [isRunning, setIsRunning] = useState(false);
+  // useEffect(() => {
+  //   let simulationInterval: NodeJS.Timeout | null = null;
+
+  //   if (isRunning) {
+  //     simulationInterval = setInterval(() => {
+  //       CheckGrid();
+  //     }, 100);
+  //     return () => clearInterval(simulationInterval as NodeJS.Timeout);
+  //   }
+  //   return () => {
+  //     if (simulationInterval) {
+  //       clearInterval(simulationInterval);
+  //     }
+  //   };
+  // }, [isRunning, cols, rows]);
+  //WORKING AREA
+
   useEffect(() => {
-    checkCellIsAlive(9, 4);
+    checkCellIsAlive(4, 2);
   }, [CurrentGenerationCell]);
   useEffect(() => {
     console.log(NextGenerationCell);
