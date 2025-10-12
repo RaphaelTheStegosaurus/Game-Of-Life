@@ -68,8 +68,10 @@ function Cell_Grid_Manager({ cols, rows }: Props) {
     */
   };
   const findIndexIntoTheGrid = (col: number, row: number) => {
-    const COUNT_OF_COLUMNS = col - (col == 0 ? 0 : 1);
-    const newIndex: number = cols * row + COUNT_OF_COLUMNS;
+    // const COUNT_OF_COLUMNS = col - (col == 0 ? 0 : 1);
+    // const newIndex: number = cols * row + COUNT_OF_COLUMNS;
+    // return newIndex;
+    const newIndex: number = row * cols + col;
     return newIndex;
   };
   const checkNeighborsCells = (col: number, row: number) => {
@@ -142,7 +144,7 @@ function Cell_Grid_Manager({ cols, rows }: Props) {
   };
 
   useEffect(() => {
-    checkCellIsAlive(2, 0);
+    checkCellIsAlive(9, 4);
   }, [CurrentGenerationCell]);
   useEffect(() => {
     console.log(NextGenerationCell);
