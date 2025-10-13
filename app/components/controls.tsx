@@ -3,12 +3,14 @@ interface Props {
   setIsRunning: (isRunning: boolean) => void;
   onNextStep: () => void;
 }
+type ParameterToChange = "Row" | "Col";
 import Styles from "./controlls.module.css";
 export default function Controls({
   isRunning,
   setIsRunning,
   onNextStep,
 }: Props) {
+  const HandleChangeValue = (Parameter: ParameterToChange, Value: number) => {};
   return (
     <aside className={Styles.Panel}>
       <button
@@ -25,11 +27,8 @@ export default function Controls({
         ➡️ Next Step
       </button>
       <button className={Styles.ControlButton}>
-        {" "}
         <span className={Styles.Icon}>↺</span> Reset
       </button>
-      <input type="numeric" step={1} max={20} min={5} value={12} />
-      <input type="numeric" step={1} max={20} min={5} value={6} />
     </aside>
   );
 }
