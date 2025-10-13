@@ -57,7 +57,6 @@ export default function Home() {
         setIsRunning={setIsRunning}
         onNextStep={() => gridManagerRef.current?.checkGrid()}
       />
-      <section className={`${styles.panel}`}></section>
     </>
   );
 }

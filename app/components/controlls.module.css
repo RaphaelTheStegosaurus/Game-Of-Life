@@ -1,0 +1,22 @@
+.Panel {
+    width: 500px;
+    border-radius: 10px;
+    background: gray;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.ControlButton {
+    padding: 5px 10px;
+}
+
+.Icon {
+    background: #7496b4;
+    border: 1px solid #5a748b;
+    padding: 1px;
+    border-radius: 2px;
+
+}
