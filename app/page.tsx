@@ -32,7 +32,7 @@ export default function Home() {
     if (isRunning && gridManagerRef.current) {
       simulationInterval = setInterval(() => {
         gridManagerRef.current?.checkGrid();
-      }, 100);
+      }, 500);
     }
 
     return () => {
