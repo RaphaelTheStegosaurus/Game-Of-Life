@@ -18,21 +18,28 @@ interface GridContextType extends GridSize {
 const ROWS = 5;
 const COLS = 10;
 const N_ELEMENTS = ROWS * COLS;
+
 export const GridContext = createContext<GridContextType | null>(null);
 export default function Home() {
   const [gridSize, setGridSize] = useState<GridSize>({ cols: 10, rows: 5 });
+  const [NElements, setNElements] = useState<number>(
+    gridSize.cols * gridSize.rows
+  );
+  useEffect(() => {
+    setNElements(gridSize.cols * gridSize.rows);
+  }, [gridSize]);
   const HandleChangeRows = (value: number) => {
     setGridSize((prev) => {
-      return { ...prev, rows: value };
+      return { ...prev, rows: prev.rows + value };
     });
   };
   const HandleChangeCols = (value: number) => {
     setGridSize((prev) => {
-      return { ...prev, cols: value };
+      return { ...prev, cols: prev.cols + value };
     });
   };
   const [CurrentGenerationCell, setCurrentGenerationCell] = useState<boolean[]>(
-    new Array(N_ELEMENTS).fill(false)
+    new Array(NElements).fill(false)
   );
   const [isRunning, setIsRunning] = useState(false);
   const handleCellToggle = useCallback((id: number, newState: boolean) => {
@@ -75,8 +82,8 @@ export default function Home() {
         <Cell_Grid_Manager
           onGenerationComplete={handleGenerationComplete}
           ref={gridManagerRef}
-          cols={COLS}
-          rows={ROWS}
+          cols={gridSize.cols}
+          rows={gridSize.rows}
           currentGeneration={CurrentGenerationCell}
           onStatusChange={handleCellToggle}
         />

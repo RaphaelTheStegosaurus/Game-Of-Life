@@ -4,6 +4,7 @@ interface Props {
   onNextStep: () => void;
 }
 type ParameterToChange = "Row" | "Col";
+import ControlButtonRange from "./ControlButtonRange";
 import Styles from "./controlls.module.css";
 export default function Controls({
   isRunning,
@@ -29,6 +30,8 @@ export default function Controls({
       <button className={Styles.ControlButton}>
         <span className={Styles.Icon}>↺</span> Reset
       </button>
+      <ControlButtonRange ParameterToChange="Col" />
+      <ControlButtonRange ParameterToChange="Row" />
     </aside>
   );
 }
