@@ -20,20 +20,22 @@ export default function Controls({
         className={Styles.ControlButton}
         onClick={() => setIsRunning(!isRunning)}
       >
-        {isRunning ? "⏸️ Stop" : "▶️ Start"}
+        <span>{isRunning ? "⏸️ Stop" : "▶️ Start"}</span>
       </button>
       <button
         className={Styles.ControlButton}
         onClick={onNextStep}
         disabled={isRunning}
       >
-        ➡️ Next Step
+        <span>➡️</span>
+        Next Step
       </button>
       <button
         className={Styles.ControlButton}
         onClick={() => {
           onResetGeneration(new Array(nElements).fill(false));
         }}
+        disabled={isRunning}
       >
         <span className={Styles.Icon}>↺</span> Reset
       </button>

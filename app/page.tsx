@@ -49,6 +49,15 @@ export default function Home() {
   const handleGenerationComplete = useCallback((newGrid: boolean[]) => {
     setCurrentGenerationCell(newGrid);
   }, []);
+
+  const ChangeRunningState = () => {
+    const someIsAlive = CurrentGenerationCell.every((value) => {
+      return !value;
+    });
+    if (someIsAlive) {
+      setIsRunning(false);
+    }
+  };
   const gridManagerRef = useRef<ManagerRef | null>(null);
   useEffect(() => {
     let simulationInterval: NodeJS.Timeout | null = null;
@@ -56,6 +65,7 @@ export default function Home() {
     if (isRunning && gridManagerRef.current) {
       simulationInterval = setInterval(() => {
         gridManagerRef.current?.checkGrid();
+        ChangeRunningState();
       }, 500);
     }
 

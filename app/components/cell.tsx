@@ -6,12 +6,6 @@ interface Props {
 }
 import styles from "./cell.module.css";
 function Cell({ index, statusLife, onStatusChange }: Props) {
-  // const [IsAlive, setIsAlive] = useState(statusLife);
-  // const handleClick = () => {
-  //   const newState = !IsAlive;
-  //   setIsAlive(newState);
-  //   onStatusChange(index, newState);
-  // };
   const handleClick = () => {
     const newState = !statusLife;
     onStatusChange(index, newState);
