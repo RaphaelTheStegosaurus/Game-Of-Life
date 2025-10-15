@@ -5,6 +5,7 @@ A implementation of **Conway's Game of Life** built using **Next.js** and **Reac
 ## Table of Contents
 - [Conway's Game of Life](#conways-game-of-life)
   - [Table of Contents](#table-of-contents)
+  - [Demo](#demo)
   - [Installation](#installation)
   - [Usage](#usage)
     - [Customization](#customization)
@@ -14,6 +15,9 @@ A implementation of **Conway's Game of Life** built using **Next.js** and **Reac
   - [License](#license)
 
 ---
+## Demo 
+Access to the demo in my Personal Website. [Game Of Life](https://rafaelalbertothestegosaurus.com/projects/GameOfLife/index.html)
+
 ## Installation
 To install and run the project locally, follow these steps:
 
