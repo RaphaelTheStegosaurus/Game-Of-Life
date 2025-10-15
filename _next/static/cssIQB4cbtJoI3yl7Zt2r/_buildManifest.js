@@ -5,8 +5,8 @@
       beforeFiles: [
         {
           has: void 0,
-          source: "/Game-Of-Life//_next/:path+",
-          destination: "/Game-Of-Life/_next/:path+",
+          source: "/_next/:path+",
+          destination: "/_next/:path+",
         },
       ],
       fallback: [],
