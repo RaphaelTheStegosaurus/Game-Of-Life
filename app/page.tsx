@@ -15,7 +15,8 @@ interface GridContextType extends GridSize {
   setCols: (n: number) => void;
   setRows: (n: number) => void;
 }
-
+const MIN_SIZE = 5;
+const MAX_SIZE = 50;
 export const GridContext = createContext<GridContextType | null>(null);
 export default function Home() {
   const [gridSize, setGridSize] = useState<GridSize>({ cols: 10, rows: 5 });
@@ -25,16 +26,31 @@ export default function Home() {
   useEffect(() => {
     setNElements(gridSize.cols * gridSize.rows);
   }, [gridSize]);
+  useEffect(() => {
+    if (CurrentGenerationCell.length !== NElements) {
+      setCurrentGenerationCell(new Array(NElements).fill(false));
+    }
+  }, [NElements]);
+
   const HandleChangeRows = (value: number) => {
     setGridSize((prev) => {
-      return { ...prev, rows: prev.rows + value };
+      const newRows = prev.rows + value;
+      if (newRows < MIN_SIZE || newRows > MAX_SIZE) {
+        return prev;
+      }
+      return { ...prev, rows: newRows };
     });
   };
   const HandleChangeCols = (value: number) => {
     setGridSize((prev) => {
-      return { ...prev, cols: prev.cols + value };
+      const newCols = prev.cols + value;
+      if (newCols < MIN_SIZE || newCols > MAX_SIZE) {
+        return prev;
+      }
+      return { ...prev, cols: newCols };
     });
   };
+
   const [CurrentGenerationCell, setCurrentGenerationCell] = useState<boolean[]>(
     new Array(NElements).fill(false)
   );
