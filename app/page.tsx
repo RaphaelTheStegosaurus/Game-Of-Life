@@ -15,9 +15,6 @@ interface GridContextType extends GridSize {
   setCols: (n: number) => void;
   setRows: (n: number) => void;
 }
-const ROWS = 5;
-const COLS = 10;
-const N_ELEMENTS = ROWS * COLS;
 
 export const GridContext = createContext<GridContextType | null>(null);
 export default function Home() {
@@ -91,6 +88,8 @@ export default function Home() {
           isRunning={isRunning}
           setIsRunning={setIsRunning}
           onNextStep={() => gridManagerRef.current?.checkGrid()}
+          onResetGeneration={handleGenerationComplete}
+          nElements={NElements}
         />
       </GridContext.Provider>
     </>
