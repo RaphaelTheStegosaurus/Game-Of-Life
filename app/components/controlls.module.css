@@ -1,9 +1,12 @@
 .Panel {
-    width: 500px;
+    margin-top: 10px;
+    min-width: 80%;
     border-radius: 10px;
     background: gray;
     padding: 10px;
     display: flex;
+    flex-wrap: wrap;
+    row-gap: 20px;
     flex-direction: row;
     align-items: center;
     justify-content: space-evenly;
@@ -11,6 +14,8 @@
 
 .ControlButton {
     padding: 5px 10px;
+    background: rgb(113, 113, 113);
+    border: 1px solid black;
 }
 
 .Icon {
@@ -22,18 +27,27 @@
 
 .ControlRangePanel {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 3fr 1fr;
     grid-template-rows: repeat(2, 1fr);
 }
 
 .ControlRangeLabel {
     grid-area: 1 / 1 / 3 / 2;
+    margin: auto 10px;
 }
 
-.Styles.ControlRangeButtonMore {
+.ControlRangeButtonMore {
     grid-area: 1 / 2 / 2 / 3;
 }
 
-.Styles.ControlRangeButtonLess {
+.ControlRangeButtonLess {
     grid-area: 2 / 2 / 3 / 3;
+}
+
+.ControlRangeButton {
+    transition: all ease 0.5s;
+}
+
+.ControlRangeButton:hover {
+    background: #7496b4;
 }

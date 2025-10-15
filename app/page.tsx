@@ -19,7 +19,7 @@ const MIN_SIZE = 5;
 const MAX_SIZE = 50;
 export const GridContext = createContext<GridContextType | null>(null);
 export default function Home() {
-  const [gridSize, setGridSize] = useState<GridSize>({ cols: 10, rows: 5 });
+  const [gridSize, setGridSize] = useState<GridSize>({ cols: 20, rows: 10 });
   const [NElements, setNElements] = useState<number>(
     gridSize.cols * gridSize.rows
   );
